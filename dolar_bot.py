@@ -1,15 +1,13 @@
 import requests
 import time
 
-TOKEN = "8785816507:AAEWLgcKncfBJiClDQ2X3RcP-u5bECw-yPw"
+TOKEN = "TOKEN"
 CHAT_ID = "1531578994"
-
 
 def dolar_kur():
     url = "https://open.er-api.com/v6/latest/USD"
     data = requests.get(url).json()
     return data["rates"]["TRY"]
-
 
 def mesaj_gonder(mesaj):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
@@ -18,12 +16,10 @@ def mesaj_gonder(mesaj):
         "text": mesaj
     })
 
-
 while True:
     kur = dolar_kur()
     print("Dolar:", kur)
 
-    if kur > 45:
-        mesaj_gonder(f"🚨 Dolar yükseldi: {kur} TL")
+    mesaj_gonder(f"💰 Günlük Dolar Kuru: {kur} TL")
 
-    time.sleep(60)
+    time.sleep(90400)
